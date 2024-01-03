@@ -11,31 +11,30 @@ from functools import partial
 ntime_steps = 200000
 
 class HeatTransfer:
-  """Initializes the class with the given parameters and calculates additional properties.
+    """Initializes the class with the given parameters and calculates additional properties.
 
-Args:
-    soil_properties (dict): A dictionary containing the properties of the soil. 
-    backfill_properties (dict): A dictionary containing the properties of the backfill.
-    cable_offset (float): The offset of the cable.
-    ntime_steps (int, optional): The number of time steps. Defaults to 200000.
+    Args:
+        soil_properties (dict): A dictionary containing the properties of the soil. 
+        backfill_properties (dict): A dictionary containing the properties of the backfill.
+        cable_offset (float): The offset of the cable.
+        ntime_steps (int, optional): The number of time steps. Defaults to 200000.
 
-Attributes:
-    soil_properties (dict): A dictionary containing the properties of the soil. 
-    backfill_properties (dict): A dictionary containing the properties of the backfill.
-    cable_offset (float): The offset of the cable.
-    ntime_steps (int): The number of time steps.
+    Attributes:
+        soil_properties (dict): A dictionary containing the properties of the soil. 
+        backfill_properties (dict): A dictionary containing the properties of the backfill.
+        cable_offset (float): The offset of the cable.
+        ntime_steps (int): The number of time steps.
 
-Methods:
-    calculate_soil_properties: Calculates additional soil properties.
-    calculate_backfill_properties: Calculates additional backfill properties.
-    conduction_convection: Simulates heat transfer using finite difference methods.
-    _plot_heat_distribution: Plots the heat distribution.
-    save_temperature_to_csv: Saves temperature data to a CSV file.
-    run_simulation: Runs the complete heat transfer simulation.
-"""
+    Methods:
+        calculate_soil_properties: Calculates additional soil properties.
+        calculate_backfill_properties: Calculates additional backfill properties.
+        conduction_convection: Simulates heat transfer using finite difference methods.
+        _plot_heat_distribution: Plots the heat distribution.
+        save_temperature_to_csv: Saves temperature data to a CSV file.
+        run_simulation: Runs the complete heat transfer simulation.
+    """
     def __init__(self, soil_properties, backfill_properties, cable_offset, ntime_steps=100000):
         """Initialize the HeatTransfer class with given parameters."""
-
         self.soil_properties = soil_properties
         self.backfill_properties = backfill_properties
         self.cable_offset = cable_offset
@@ -47,7 +46,6 @@ Methods:
 
     def calculate_soil_properties(self):
         """Calculate additional soil properties."""
-
         n = self.soil_properties['n']
         lambda_soil = self.soil_properties['lambda_soil']
         cp_soil = self.soil_properties['cp_soil']
@@ -59,13 +57,13 @@ Methods:
 
     def calculate_backfill_properties(self):
         """Calculate additional backfill properties."""
-
         n_backfill = self.backfill_properties['n_backfill']
         lambda_backfill = self.backfill_properties['lambda_backfill']
         cp_backfill = self.backfill_properties['cp_backfill']
         rho_backfill = self.backfill_properties['rho_backfill']
 
         self.backfill_properties['alpha_backfill'] = lambda_backfill / (rho_backfill * cp_backfill)
+
 
     def conduction_convection(self):
         """Simulate heat transfer using finite difference methods."""
